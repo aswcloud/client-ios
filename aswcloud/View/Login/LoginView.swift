@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
+    private @State var serverIp = ""
+    
+    private var login: ()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text("ASW Cloud")
+            TextField("Server IP", text: <#T##Binding<String>#>)
+        }.on
     }
 }
 
