@@ -11,7 +11,7 @@ import SwiftUI
 struct AswCloudApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EntryPointView()
         }
     }
 }
