@@ -22,8 +22,7 @@ struct LoginView: View {
                 HStack {
                     Spacer()
                     VStack(alignment: .trailing) {
-                        NavigationLink(destination: EmptyView()
-                                        .navigationBarBackButtonHidden(true)) {
+                        NavigationLink(destination: RegisterView()) {
                             Text("회원가입")
                         }
                         

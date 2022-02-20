@@ -34,9 +34,7 @@ struct LoginFormView: View {
             }
             .buttonStyle(BorderedButtonStyle())
             .frame(maxWidth: .infinity)
-            
         }
-        
     }
 }
 
