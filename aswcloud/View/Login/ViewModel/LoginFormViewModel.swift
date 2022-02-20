@@ -17,10 +17,10 @@ class LoginFormViewModel : ObservableObject {
     
     // MARK: - View to ViewModel Event
     
-    func getUserAccount() -> (String, String, String) {
+    func getUserAccount() -> LoginResultModel {
         let hash = SHA256.hash(data: userPassword.data(using: .utf8)!)
         let text = hash.compactMap{ String(format: "%02x", $0) }.joined()
-        return (serverIp, userId, text)
+        return .init(serverIp: serverIp, userId: userId, userPassword: text)
     }
     
     // MARK: - 기본 아이디, 비밀번호 설정 할 때 이곳에서 초기화 함.

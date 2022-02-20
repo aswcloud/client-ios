@@ -10,5 +10,5 @@ import Foundation
 struct LoginResultModel {
     var serverIp: String
     var userId: String
-    
+    var userPassword: String
 }

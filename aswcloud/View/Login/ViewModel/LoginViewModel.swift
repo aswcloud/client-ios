@@ -33,7 +33,7 @@ class LoginViewModel : ObservableObject {
     
     // MARK: - View to ViewModel Event
     
-    func login(ip: String, id: String, pw: String) {
+    func login(data: LoginResultModel) {
         // Login PoC 검증 코드
         // TODO:
         // 추후 LoginSession 에 통합 되어서 코드 간략화가 될 예정
@@ -43,11 +43,11 @@ class LoginViewModel : ObservableObject {
             try? group.syncShutdownGracefully()
         }
         
-        let split = ip.split(separator: ":")
+        let split = data.serverIp.split(separator: ":")
         let host: String
         let port: Int
         
-        if ip.isEmpty {
+        if data.serverIp.isEmpty {
             host = "localhost"
             port = 8088
         }
@@ -77,8 +77,8 @@ class LoginViewModel : ObservableObject {
         }
         
         let send = V1_UserLoginMessage.with {
-            $0.userID = id
-            $0.userPassword = pw
+            $0.userID = data.userId
+            $0.userPassword = data.userPassword
             $0.role = []
         }
         

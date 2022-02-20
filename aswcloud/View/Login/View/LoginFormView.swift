@@ -10,8 +10,8 @@ import SwiftUI
 struct LoginFormView: View {
     @StateObject var viewModel = LoginFormViewModel()
     
-    var login: (_ ip: String, _ id: String, _ pw: String) -> Void = { _, _, _ in }
-    func onLogin(login: @escaping (_ ip: String, _ id: String, _ pw: String) -> Void) -> LoginFormView {
+    var login: (LoginResultModel) -> Void = { _ in }
+    func onLogin(login: @escaping (LoginResultModel) -> Void) -> LoginFormView {
         var p = self
         p.login = login
         return p
@@ -28,8 +28,7 @@ struct LoginFormView: View {
             }
             
             Button(action: {
-                let (ip, id, pwd) = viewModel.getUserAccount()
-                login(ip, id, pwd)
+                login(viewModel.getUserAccount())
             }) {
                 Text("로그인")
             }
