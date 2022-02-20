@@ -15,9 +15,6 @@ class LoginFormViewModel : ObservableObject {
     @Published var userId = ""
     @Published var userPassword = ""
     
-    // MARK: - Occur Function
-    
-    
     // MARK: - View to ViewModel Event
     
     func getUserAccount() -> (String, String, String) {
@@ -26,7 +23,7 @@ class LoginFormViewModel : ObservableObject {
         return (serverIp, userId, text)
     }
     
-    
+    // MARK: - 기본 아이디, 비밀번호 설정 할 때 이곳에서 초기화 함.
     init() {
         
     }

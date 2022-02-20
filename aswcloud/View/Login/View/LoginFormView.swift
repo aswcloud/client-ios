@@ -26,14 +26,16 @@ struct LoginFormView: View {
                     SecureField("Password", text: $viewModel.userPassword)
                 }
             }
-            HStack {
-                Button(action: {
-                    let (ip, id, pwd) = viewModel.getUserAccount()
-                    login(ip, id, pwd)
-                }) {
-                    Text("로그인")
-                }.buttonStyle(BorderedButtonStyle())
+            
+            Button(action: {
+                let (ip, id, pwd) = viewModel.getUserAccount()
+                login(ip, id, pwd)
+            }) {
+                Text("로그인")
             }
+            .buttonStyle(BorderedButtonStyle())
+            .frame(maxWidth: .infinity)
+            
         }
         
     }

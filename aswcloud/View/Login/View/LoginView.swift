@@ -15,11 +15,9 @@ struct LoginView: View {
         NavigationView {
             VStack {
                 LoginFormView()
-                    .onLogin { ip, id, pw in
-                        viewModel.text = "\(ip)\n\(id)\n\(pw)"
-                        viewModel.autoLogin.toggle()
-                    }.toast(isPresenting: $viewModel.autoLogin) {
-                        AlertToast(displayMode: .hud, type: .regular, title: viewModel.text)
+                    .onLogin(login: viewModel.login)
+                    .toast(isPresenting: $viewModel.toastLoginResult) {
+                        viewModel.getAlertToast()
                     }
                 HStack {
                     Spacer()
@@ -29,20 +27,7 @@ struct LoginView: View {
                             Text("회원가입")
                         }
                         
-                        Button(action: {
-                            viewModel.autoLogin.toggle()
-                        }) {
-                            HStack {
-                                if viewModel.autoLogin {
-                                    Image(systemName: "chevron.down.square")
-                                        .foregroundColor(Color.red)
-                                }else {
-                                    Image(systemName: "chevron.down.square.fill")
-                                        .foregroundColor(Color.red)
-                                }
-                                Text("자동 로그인")
-                            }.foregroundColor(Color.primary)
-                        }
+                        LoginAutoLoginView(autoLogin: $viewModel.autoLogin)
                     }
                 }
             }.padding()

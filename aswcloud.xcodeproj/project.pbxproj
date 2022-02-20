@@ -17,6 +17,7 @@
 		62DB61E227C244B600F73BA6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E127C244B600F73BA6 /* LoginViewModel.swift */; };
 		62DB61E827C2465600F73BA6 /* LoginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E727C2465600F73BA6 /* LoginFormView.swift */; };
 		62DB61EA27C247CB00F73BA6 /* LoginFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E927C247CB00F73BA6 /* LoginFormViewModel.swift */; };
+		62DB61EC27C2561800F73BA6 /* LoginAutoLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61EB27C2561800F73BA6 /* LoginAutoLoginView.swift */; };
 		62F8FD8F27B279C90039A327 /* AswCloudApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FD8E27B279C90039A327 /* AswCloudApp.swift */; };
 		62F8FD9327B279CA0039A327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62F8FD9227B279CA0039A327 /* Assets.xcassets */; };
 		62F8FD9627B279CA0039A327 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62F8FD9527B279CA0039A327 /* Preview Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		62DB61E127C244B600F73BA6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		62DB61E727C2465600F73BA6 /* LoginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormView.swift; sourceTree = "<group>"; };
 		62DB61E927C247CB00F73BA6 /* LoginFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewModel.swift; sourceTree = "<group>"; };
+		62DB61EB27C2561800F73BA6 /* LoginAutoLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAutoLoginView.swift; sourceTree = "<group>"; };
 		62F8FD8B27B279C90039A327 /* aswcloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aswcloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F8FD8E27B279C90039A327 /* AswCloudApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AswCloudApp.swift; sourceTree = "<group>"; };
 		62F8FD9227B279CA0039A327 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		624D21B827B2A57200994541 /* Enviroment */ = {
 			isa = PBXGroup;
 			children = (
+				62DB61ED27C2713600F73BA6 /* LoginSession */,
 			);
 			path = Enviroment;
 			sourceTree = "<group>";
@@ -116,8 +119,16 @@
 			children = (
 				624D21B627B2A53E00994541 /* LoginView.swift */,
 				62DB61E727C2465600F73BA6 /* LoginFormView.swift */,
+				62DB61EB27C2561800F73BA6 /* LoginAutoLoginView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		62DB61ED27C2713600F73BA6 /* LoginSession */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginSession;
 			sourceTree = "<group>";
 		};
 		62F8FD8227B279C90039A327 = {
@@ -238,6 +249,7 @@
 				624D21B727B2A53E00994541 /* LoginView.swift in Sources */,
 				624D21C227B2A5FF00994541 /* EntryPointView.swift in Sources */,
 				62DB61E227C244B600F73BA6 /* LoginViewModel.swift in Sources */,
+				62DB61EC27C2561800F73BA6 /* LoginAutoLoginView.swift in Sources */,
 				62DB61E827C2465600F73BA6 /* LoginFormView.swift in Sources */,
 				62DB61EA27C247CB00F73BA6 /* LoginFormViewModel.swift in Sources */,
 				624D21C427B2A62400994541 /* HomeView.swift in Sources */,
