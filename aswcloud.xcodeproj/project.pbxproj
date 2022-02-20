@@ -13,6 +13,10 @@
 		624D21C427B2A62400994541 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624D21C327B2A62400994541 /* HomeView.swift */; };
 		624D21C727B2AAF200994541 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 624D21C627B2AAF200994541 /* SplashScreen.storyboard */; };
 		624D21CA27B2D77700994541 /* LoginResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624D21C927B2D77700994541 /* LoginResultModel.swift */; };
+		62DB61E027C2378000F73BA6 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 62DB61DF27C2378000F73BA6 /* AlertToast */; };
+		62DB61E227C244B600F73BA6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E127C244B600F73BA6 /* LoginViewModel.swift */; };
+		62DB61E827C2465600F73BA6 /* LoginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E727C2465600F73BA6 /* LoginFormView.swift */; };
+		62DB61EA27C247CB00F73BA6 /* LoginFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E927C247CB00F73BA6 /* LoginFormViewModel.swift */; };
 		62F8FD8F27B279C90039A327 /* AswCloudApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FD8E27B279C90039A327 /* AswCloudApp.swift */; };
 		62F8FD9327B279CA0039A327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62F8FD9227B279CA0039A327 /* Assets.xcassets */; };
 		62F8FD9627B279CA0039A327 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62F8FD9527B279CA0039A327 /* Preview Assets.xcassets */; };
@@ -24,6 +28,9 @@
 		624D21C327B2A62400994541 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		624D21C627B2AAF200994541 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		624D21C927B2D77700994541 /* LoginResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResultModel.swift; sourceTree = "<group>"; };
+		62DB61E127C244B600F73BA6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		62DB61E727C2465600F73BA6 /* LoginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormView.swift; sourceTree = "<group>"; };
+		62DB61E927C247CB00F73BA6 /* LoginFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewModel.swift; sourceTree = "<group>"; };
 		62F8FD8B27B279C90039A327 /* aswcloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aswcloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F8FD8E27B279C90039A327 /* AswCloudApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AswCloudApp.swift; sourceTree = "<group>"; };
 		62F8FD9227B279CA0039A327 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,6 +43,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6247B44D27B7E718001B03C3 /* AswProtobuf in Frameworks */,
+				62DB61E027C2378000F73BA6 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +64,9 @@
 		624D21B527B2A52600994541 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				62DB61E427C2462400F73BA6 /* View */,
 				624D21B927B2A57900994541 /* ViewModel */,
 				624D21C827B2D75F00994541 /* Model */,
-				624D21B627B2A53E00994541 /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -73,6 +81,8 @@
 		624D21B927B2A57900994541 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				62DB61E127C244B600F73BA6 /* LoginViewModel.swift */,
+				62DB61E927C247CB00F73BA6 /* LoginFormViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -99,6 +109,15 @@
 				624D21C927B2D77700994541 /* LoginResultModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		62DB61E427C2462400F73BA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				624D21B627B2A53E00994541 /* LoginView.swift */,
+				62DB61E727C2465600F73BA6 /* LoginFormView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		62F8FD8227B279C90039A327 = {
@@ -155,6 +174,7 @@
 			name = aswcloud;
 			packageProductDependencies = (
 				6247B44C27B7E718001B03C3 /* AswProtobuf */,
+				62DB61DF27C2378000F73BA6 /* AlertToast */,
 			);
 			productName = aswcloud;
 			productReference = 62F8FD8B27B279C90039A327 /* aswcloud.app */;
@@ -186,6 +206,7 @@
 			mainGroup = 62F8FD8227B279C90039A327;
 			packageReferences = (
 				6247B44B27B7E718001B03C3 /* XCRemoteSwiftPackageReference "idl" */,
+				62DB61DE27C2378000F73BA6 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 62F8FD8C27B279C90039A327 /* Products */;
 			projectDirPath = "";
@@ -216,6 +237,9 @@
 			files = (
 				624D21B727B2A53E00994541 /* LoginView.swift in Sources */,
 				624D21C227B2A5FF00994541 /* EntryPointView.swift in Sources */,
+				62DB61E227C244B600F73BA6 /* LoginViewModel.swift in Sources */,
+				62DB61E827C2465600F73BA6 /* LoginFormView.swift in Sources */,
+				62DB61EA27C247CB00F73BA6 /* LoginFormViewModel.swift in Sources */,
 				624D21C427B2A62400994541 /* HomeView.swift in Sources */,
 				624D21CA27B2D77700994541 /* LoginResultModel.swift in Sources */,
 				62F8FD8F27B279C90039A327 /* AswCloudApp.swift in Sources */,
@@ -433,6 +457,14 @@
 				kind = branch;
 			};
 		};
+		62DB61DE27C2378000F73BA6 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -440,6 +472,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6247B44B27B7E718001B03C3 /* XCRemoteSwiftPackageReference "idl" */;
 			productName = AswProtobuf;
+		};
+		62DB61DF27C2378000F73BA6 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62DB61DE27C2378000F73BA6 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
