@@ -34,16 +34,26 @@ struct RegisterView: View {
             List {
                 Section("Server Information") {
                     TextField("서버 주소", text: $p)
+                        .textContentType(.URL)
+                        .keyboardType(.URL)
                     TextField("회원가입 토큰", text: $p)
+                        .keyboardType(.asciiCapable)
                     Button("회원가입 토큰이란?") {
                         // TODO: github markdown 페이지로 이동
                     }
                 }
                 Section("User Information") {
                     TextField("아이디", text: $p)
+                        .textContentType(.username)
                     SecureField("비밀번호", text: $p)
+                        .textContentType(.password)
                     SecureField("확인 비밀번호", text: $p)
+                        .textContentType(.password)
+                    TextField("닉네임", text: $p)
+                        .textContentType(.name)
                     TextField("(선택) 이메일 주소", text: $p)
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
                 }
                 Button("회원가입") {
                     // TODO: send view model and server
