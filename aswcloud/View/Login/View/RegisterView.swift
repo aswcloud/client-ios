@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BetterSafariView
 
 
 struct RegisterView: View {
@@ -13,6 +14,8 @@ struct RegisterView: View {
     
     @GestureState private var dragOffset = CGSize.zero
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @State var helpRegisterToken = false
     
     var btnBack : some View {
         Button(action: {
@@ -32,7 +35,8 @@ struct RegisterView: View {
             HStack {
                 btnBack
                 Spacer()
-            }.padding([.leading, .trailing])
+            }
+            .padding([.leading, .trailing])
             
             List {
                 Section("Server Information") {
@@ -41,12 +45,11 @@ struct RegisterView: View {
                         .keyboardType(.URL)
                     TextField("회원가입 토큰", text: $viewModel.register.registerToken)
                         .keyboardType(.asciiCapable)
-//                    NavigationLink("회원가입 토큰이란?") {
-//                        WebView
-//                    }
                     Button("회원가입 토큰이란?") {
                         // TODO: github markdown 페이지로 이동
-                        
+                        helpRegisterToken = true
+                    }.safariView(isPresented: $helpRegisterToken) {
+                        SafariView(url: URL(string: "https://github.com/aswcloud/document/blob/main/ios-register-token.md#%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%86%A0%ED%81%B0%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94")!)
                     }
                 }
                 Section("User Information") {
@@ -62,10 +65,13 @@ struct RegisterView: View {
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
                 }
-                Button("회원가입") {
-                    // TODO: send view model and server
-                }
+                
+                // TODO: send view model and server
+                Button("회원가입", action: viewModel.registerRequest)
             }
+        }
+        .toast(isPresenting: $viewModel.toastRegisterResult) {
+            viewModel.getAlertToast()
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)

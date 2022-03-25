@@ -10,6 +10,7 @@ import SwiftUI
 import AswProtobuf
 import GRPC
 import AlertToast
+import SwiftJWT
 
 
 class LoginViewModel : ObservableObject {
@@ -44,26 +45,11 @@ class LoginViewModel : ObservableObject {
         }
         
         let split = data.serverIp.split(separator: ":")
-        let host: String
-        let port: Int
+        let endPoint = data.serverIp.ipPort()
         
-        if data.serverIp.isEmpty {
-            host = "localhost"
-            port = 8088
-        }
-        else if split.count == 1 {
-            host = String(split[0])
-            port = 8088
-        }else {
-            host = String(split[0])
-            if let num = Int(split[1]) {
-                port = num
-            }else {
-                port = 8088
-            }
-        }
         
-        guard let pool = try? GRPCChannelPool.with(target: .host(host, port: port),
+        
+        guard let pool = try? GRPCChannelPool.with(target: .host(endPoint.ip, port: endPoint.port),
                                                    transportSecurity: .plaintext,
                                                    eventLoopGroup: group) else {
             currentLoginResult = .fail(.networkFailure)
@@ -76,17 +62,17 @@ class LoginViewModel : ObservableObject {
             try? client.channel.close().wait()
         }
         
-        let send = V1_UserLoginMessage.with {
+        let send = V1_CreateRefreshTokenMessage.with {
             $0.userID = data.userId
             $0.userPassword = data.userPassword
-            $0.role = []
         }
         
         let p = client.createRefreshToken(send)
         
         if let result = try? p.response.wait() {
             if result.result {
-                currentLoginResult = .success(result.uuid.uuid, result.token)
+                let tokenMessage = try! JWT<TokenMessage>.init(jwtString: result.token)
+                currentLoginResult = .success(tokenMessage.claims.user_id, result.token)
             }else {
                 currentLoginResult = .fail(.notMatching)
             }

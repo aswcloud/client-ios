@@ -19,7 +19,7 @@ class LoginFormViewModel : ObservableObject {
     
     func getUserAccount() -> LoginResultModel {
         
-        return .init(serverIp: serverIp, userId: userId, userPassword: userPassword)
+        return .init(serverIp: serverIp, userId: userId, userPassword: String(userPassword.sha256()))
     }
     
     // MARK: - 기본 아이디, 비밀번호 설정 할 때 이곳에서 초기화 함.
