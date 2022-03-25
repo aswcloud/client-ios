@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import CryptoKit
+
 
 class LoginFormViewModel : ObservableObject {
     // MARK: - Published Object
@@ -18,9 +18,8 @@ class LoginFormViewModel : ObservableObject {
     // MARK: - View to ViewModel Event
     
     func getUserAccount() -> LoginResultModel {
-        let hash = SHA256.hash(data: userPassword.data(using: .utf8)!)
-        let text = hash.compactMap{ String(format: "%02x", $0) }.joined()
-        return .init(serverIp: serverIp, userId: userId, userPassword: text)
+        
+        return .init(serverIp: serverIp, userId: userId, userPassword: userPassword)
     }
     
     // MARK: - 기본 아이디, 비밀번호 설정 할 때 이곳에서 초기화 함.

@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+
 struct RegisterView: View {
-    @State var p = ""
+    @ObservedObject var viewModel = RegisterViewModel()
+    
     @GestureState private var dragOffset = CGSize.zero
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var btnBack : some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -33,25 +36,29 @@ struct RegisterView: View {
             
             List {
                 Section("Server Information") {
-                    TextField("서버 주소", text: $p)
+                    TextField("서버 주소", text: $viewModel.register.serverIp)
                         .textContentType(.URL)
                         .keyboardType(.URL)
-                    TextField("회원가입 토큰", text: $p)
+                    TextField("회원가입 토큰", text: $viewModel.register.registerToken)
                         .keyboardType(.asciiCapable)
+//                    NavigationLink("회원가입 토큰이란?") {
+//                        WebView
+//                    }
                     Button("회원가입 토큰이란?") {
                         // TODO: github markdown 페이지로 이동
+                        
                     }
                 }
                 Section("User Information") {
-                    TextField("아이디", text: $p)
+                    TextField("아이디", text: $viewModel.register.userId)
                         .textContentType(.username)
-                    SecureField("비밀번호", text: $p)
+                    SecureField("비밀번호", text: $viewModel.register.password)
                         .textContentType(.password)
-                    SecureField("확인 비밀번호", text: $p)
+                    SecureField("확인 비밀번호", text: $viewModel.register.confirmPassword)
                         .textContentType(.password)
-                    TextField("닉네임", text: $p)
+                    TextField("닉네임", text: $viewModel.register.nickName)
                         .textContentType(.name)
-                    TextField("(선택) 이메일 주소", text: $p)
+                    TextField("(선택) 이메일 주소", text: $viewModel.register.email)
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
                 }
