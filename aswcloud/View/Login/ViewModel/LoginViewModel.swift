@@ -44,7 +44,6 @@ class LoginViewModel : ObservableObject {
             try? group.syncShutdownGracefully()
         }
         
-        let split = data.serverIp.split(separator: ":")
         let endPoint = data.serverIp.ipPort()
         
         

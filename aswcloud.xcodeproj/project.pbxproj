@@ -89,14 +89,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		624D21B827B2A57200994541 /* Enviroment */ = {
-			isa = PBXGroup;
-			children = (
-				62DB61ED27C2713600F73BA6 /* LoginSession */,
-			);
-			path = Enviroment;
-			sourceTree = "<group>";
-		};
 		624D21B927B2A57900994541 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,13 +125,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		625BA1EE27EDB1CF00E6BD31 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		6276ACDA27E9FAAE00893584 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,13 +142,6 @@
 				62DB61EF27C2779500F73BA6 /* RegisterView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		62DB61ED27C2713600F73BA6 /* LoginSession */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LoginSession;
 			sourceTree = "<group>";
 		};
 		62F8FD8227B279C90039A327 = {
@@ -185,9 +163,7 @@
 		62F8FD8D27B279C90039A327 /* aswcloud */ = {
 			isa = PBXGroup;
 			children = (
-				625BA1EE27EDB1CF00E6BD31 /* Network */,
 				6276ACDA27E9FAAE00893584 /* Extension */,
-				624D21B827B2A57200994541 /* Enviroment */,
 				624D21B427B2A52100994541 /* View */,
 				62F8FD8E27B279C90039A327 /* AswCloudApp.swift */,
 				62F8FD9227B279CA0039A327 /* Assets.xcassets */,
