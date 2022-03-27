@@ -39,11 +39,7 @@ class LoginViewModel : ObservableObject {
         // TODO:
         // 추후 LoginSession 에 통합 되어서 코드 간략화가 될 예정
         
-        let group = Network.shared.eventLoopGroup
-        
-        
         let endPoint = data.serverIp.ipPort()
-        
         let options = CallOptions(timeLimit: .timeout(.milliseconds(500)))
         let client = V1_TokenClient(channel: Network.shared.grpcChannel(host: endPoint.ip,
                                                                               port: endPoint.port)!,
