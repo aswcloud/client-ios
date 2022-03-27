@@ -10,7 +10,7 @@ import SwiftUI
 import AswProtobuf
 import GRPC
 import AlertToast
-
+import NIO
 
 class RegisterViewModel : ObservableObject {
     @Published var register = RegisterModel(serverIp: "",
@@ -39,29 +39,15 @@ class RegisterViewModel : ObservableObject {
         }else if register.nickName.isEmpty {
             currentRegisterResult = .fail("닉네임이 공란이 될 수 없습니다.")
             toastRegisterResult = true
-        }
-        
-        
-        
-        let group = PlatformSupport.makeEventLoopGroup(loopCount: 1)
-        defer {
-            try? group.syncShutdownGracefully()
-        }
-        
-        let endPoint = register.serverIp.ipPort()
-        
-        guard let pool = try? GRPCChannelPool.with(target: .hostAndPort(endPoint.ip, endPoint.port),
-                                                   transportSecurity: .plaintext,
-                                                   eventLoopGroup: group) else {
-            currentRegisterResult = .fail("인터넷 연결이 되어 있지 않습니다.")
-            toastRegisterResult = true
             return
         }
+
+        let endPoint = register.serverIp.ipPort()
         
-        let client = AswProtobuf.V1_UserAccountClient(channel: pool)
-        defer {
-            try? client.channel.close().wait()
-        }
+        let options = CallOptions(timeLimit: .timeout(.milliseconds(500)))
+        let client = V1_UserAccountClient(channel: Network.shared.grpcChannel(host: endPoint.ip,
+                                                                              port: endPoint.port)!,
+                                          defaultCallOptions: options)
         
         let send = V1_MakeUser.with {
             $0.user = V1_User.with {
@@ -74,18 +60,35 @@ class RegisterViewModel : ObservableObject {
         }
         
         let p = client.createUser(send)
-        
-        if let result = try? p.response.wait() {
-            if result.result {
-                currentRegisterResult = .success(register.userId, register.password)
-                
-            }else if result.hasError {
-                currentRegisterResult = .fail(result.error)
-            }
-        }else {
-            currentRegisterResult = .fail("인터넷 연결이 되어 있지 않습니다.")
+        p.response.whenSuccess { summary in
+            print("AASDASD")
         }
-        toastRegisterResult = true
+        
+        p.response.whenComplete { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let token):
+                    if token.result {
+                        self.currentRegisterResult = .success(self.register.userId,
+                                                              self.register.password)
+                    }else {
+                        self.currentRegisterResult = .fail(token.error)
+                    }
+                    break
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    self.currentRegisterResult = .fail("인터넷 연결이 되어 있지 않습니다.")
+                    break
+                }
+                self.toastRegisterResult = true
+            }
+        }
+        
+        _ = p.status.always {
+            print($0)
+        }
+//        try? client.channel.close().wait()
+        
     }
     
     
@@ -98,8 +101,10 @@ class RegisterViewModel : ObservableObject {
             case .fail(let reason):
                 if reason.contains("exists") {
                     return AlertToast(displayMode: .hud, type: .regular, title: "회원가입에 실패 하였습니다.", subTitle: "이미 아이디가 존재 합니다.")
-                }else {
+                }else if reason.contains("document"){
                     return AlertToast(displayMode: .hud, type: .regular, title: "회원가입에 실패 하였습니다.", subTitle: "회원 가입 토큰 값이 잘못 입력 되었습니다.")
+                }else {
+                    return AlertToast(displayMode: .hud, type: .regular, title: "회원가입에 실패 하였습니다.", subTitle: reason)
                 }
                 
             }

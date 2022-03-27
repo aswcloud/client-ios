@@ -16,5 +16,4 @@ struct RegisterModel {
     var confirmPassword: String
     var nickName: String
     var email: String
-    
 }

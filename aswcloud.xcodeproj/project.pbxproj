@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6216F31827F0585A0001312B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6216F31727F0585A0001312B /* Network.swift */; };
+		6216F31A27F058640001312B /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6216F31927F058640001312B /* Register.swift */; };
 		624D21B727B2A53E00994541 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624D21B627B2A53E00994541 /* LoginView.swift */; };
 		624D21C227B2A5FF00994541 /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624D21C127B2A5FF00994541 /* EntryPointView.swift */; };
 		624D21C427B2A62400994541 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624D21C327B2A62400994541 /* HomeView.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6216F31727F0585A0001312B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		6216F31927F058640001312B /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		624D21B627B2A53E00994541 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		624D21C127B2A5FF00994541 /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
 		624D21C327B2A62400994541 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -68,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6216F31627F0584F0001312B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6216F31727F0585A0001312B /* Network.swift */,
+				6216F31927F058640001312B /* Register.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		624D21B427B2A52100994541 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +176,7 @@
 		62F8FD8D27B279C90039A327 /* aswcloud */ = {
 			isa = PBXGroup;
 			children = (
+				6216F31627F0584F0001312B /* Network */,
 				6276ACDA27E9FAAE00893584 /* Extension */,
 				624D21B427B2A52100994541 /* View */,
 				62F8FD8E27B279C90039A327 /* AswCloudApp.swift */,
@@ -270,6 +284,7 @@
 				624D21C227B2A5FF00994541 /* EntryPointView.swift in Sources */,
 				6276ACDC27E9FAB700893584 /* String+Hash+IP.swift in Sources */,
 				62DB61E227C244B600F73BA6 /* LoginViewModel.swift in Sources */,
+				6216F31827F0585A0001312B /* Network.swift in Sources */,
 				6293456627E9EFA900B2224C /* RegisterViewModel.swift in Sources */,
 				62DB61EC27C2561800F73BA6 /* LoginAutoLoginView.swift in Sources */,
 				62DB61E827C2465600F73BA6 /* LoginFormView.swift in Sources */,
@@ -278,6 +293,7 @@
 				624D21C427B2A62400994541 /* HomeView.swift in Sources */,
 				624D21CA27B2D77700994541 /* LoginResultModel.swift in Sources */,
 				625BA1E727EDA1CC00E6BD31 /* TokenMessage.swift in Sources */,
+				6216F31A27F058640001312B /* Register.swift in Sources */,
 				62F8FD8F27B279C90039A327 /* AswCloudApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

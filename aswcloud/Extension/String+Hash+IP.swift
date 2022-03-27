@@ -24,8 +24,8 @@ extension String {
         let split = self.split(separator: ":")
         
         if self.isEmpty {
-            ip = ""
-            port = 0
+            ip = "127.0.0.1"
+            port = 8088
         }
         else if split.count == 1 {
             ip = String(split[0])

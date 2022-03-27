@@ -39,46 +39,47 @@ class LoginViewModel : ObservableObject {
         // TODO:
         // 추후 LoginSession 에 통합 되어서 코드 간략화가 될 예정
         
-        let group = PlatformSupport.makeEventLoopGroup(loopCount: 1)
-        defer {
-            try? group.syncShutdownGracefully()
-        }
+        let group = Network.shared.eventLoopGroup
+        
         
         let endPoint = data.serverIp.ipPort()
         
+        let options = CallOptions(timeLimit: .timeout(.milliseconds(500)))
+        let client = V1_TokenClient(channel: Network.shared.grpcChannel(host: endPoint.ip,
+                                                                              port: endPoint.port)!,
+                                          defaultCallOptions: options)
         
+//        08efd8a1cf4d2bba8c8700f52ee4047300c3ddfc8bf4fd0bf716d813252fc7510c6d8978c62105047c976dd4c9547c74299de3001c0e95cf86a34773dd18921e
         
-        guard let pool = try? GRPCChannelPool.with(target: .host(endPoint.ip, port: endPoint.port),
-                                                   transportSecurity: .plaintext,
-                                                   eventLoopGroup: group) else {
-            currentLoginResult = .fail(.networkFailure)
-            toastLoginResult = true
-            return
-        }
-        
-        let client = AswProtobuf.V1_TokenClient(channel: pool)
-        defer {
-            try? client.channel.close().wait()
-        }
         
         let send = V1_CreateRefreshTokenMessage.with {
             $0.userID = data.userId
             $0.userPassword = data.userPassword
         }
-        
         let p = client.createRefreshToken(send)
         
-        if let result = try? p.response.wait() {
-            if result.result {
-                let tokenMessage = try! JWT<TokenMessage>.init(jwtString: result.token)
-                currentLoginResult = .success(tokenMessage.claims.user_id, result.token)
-            }else {
-                currentLoginResult = .fail(.notMatching)
+        p.response.whenComplete { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let token):
+                    if token.result {
+                        let tokenMessage = try! JWT<TokenMessage>.init(jwtString: token.token)
+                        self.currentLoginResult = .success(tokenMessage.claims.user_id, token.token)
+                    }else {
+                        self.currentLoginResult = .fail(.notMatching)
+                    }
+                    break
+                case .failure(_):
+                    self.currentLoginResult = .fail(.networkFailure)
+                    break
+                }
+                self.toastLoginResult = true
             }
-        }else {
-            currentLoginResult = .fail(.networkFailure)
         }
-        toastLoginResult = true
+        
+        _ = p.status.always { result in
+            print(result)
+        }
     }
     
     func getAlertToast() -> AlertToast {

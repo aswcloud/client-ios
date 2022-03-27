@@ -22,7 +22,7 @@ struct RegisterView: View {
             self.presentationMode.wrappedValue.dismiss()
             }) {
                 HStack {
-                Image("ic_back") // set image here
+                Image(systemName: "ic_back") // set image here
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(.white)
                     Text("Go back")
