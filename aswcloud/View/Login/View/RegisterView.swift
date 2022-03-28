@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import BetterSafariView
+
 
 
 struct RegisterView: View {
@@ -15,7 +15,7 @@ struct RegisterView: View {
     @GestureState private var dragOffset = CGSize.zero
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State var helpRegisterToken = false
+    
     
     var btnBack : some View {
         Button(action: {
@@ -39,32 +39,14 @@ struct RegisterView: View {
             .padding([.leading, .trailing])
             
             List {
-                Section("Server Information") {
-                    TextField("서버 주소", text: $viewModel.register.serverIp)
-                        .textContentType(.URL)
-                        .keyboardType(.URL)
-                    TextField("회원가입 토큰", text: $viewModel.register.registerToken)
-                        .keyboardType(.asciiCapable)
-                    Button("회원가입 토큰이란?") {
-                        // TODO: github markdown 페이지로 이동
-                        helpRegisterToken = true
-                    }.safariView(isPresented: $helpRegisterToken) {
-                        SafariView(url: URL(string: "https://github.com/aswcloud/document/blob/main/ios-register-token.md#%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%86%A0%ED%81%B0%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94")!)
-                    }
-                }
-                Section("User Information") {
-                    TextField("아이디", text: $viewModel.register.userId)
-                        .textContentType(.username)
-                    SecureField("비밀번호", text: $viewModel.register.password)
-                        .textContentType(.password)
-                    SecureField("확인 비밀번호", text: $viewModel.register.confirmPassword)
-                        .textContentType(.password)
-                    TextField("닉네임", text: $viewModel.register.nickName)
-                        .textContentType(.name)
-                    TextField("(선택) 이메일 주소", text: $viewModel.register.email)
-                        .textContentType(.emailAddress)
-                        .keyboardType(.emailAddress)
-                }
+                RegisterServerView(serverIp: $viewModel.register.serverIp,
+                                   registerToken: $viewModel.register.registerToken)
+                
+                RegisterUserView(userId: $viewModel.register.userId,
+                                 password: $viewModel.register.password,
+                                 confirmPassword: $viewModel.register.confirmPassword,
+                                 nickName: $viewModel.register.nickName,
+                                 email: $viewModel.register.email)
                 
                 // TODO: send view model and server
                 Button("회원가입", action: viewModel.registerRequest)
