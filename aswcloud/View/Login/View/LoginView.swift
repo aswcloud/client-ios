@@ -30,7 +30,7 @@ struct LoginView: View {
                     }
                 }
             }.padding()
-        }
+        }.navigationViewStyle(.stack)
         
     }
 }

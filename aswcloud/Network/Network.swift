@@ -15,20 +15,21 @@ enum NetworkError : Error {
 
 class Network {
     static let shared = Network()
-    let register = Register()
     
     let eventLoopGroup: EventLoopGroup
     
     private var currentEndPoint: (host: String, port: Int) = ("", 0)
     private var currentGrpcChannel: GRPCChannel?
     
+    public private(set) var timeout: TimeAmount = .seconds(1)
+    
     // 솔직히 죽으면 그건 그것대로 곤란함.
     func grpcChannel(host: String = "", port: Int = 0) -> GRPCChannel? {
-        if currentEndPoint.host == host &&
-            currentEndPoint.port == port {
+        if (host == "" && port == 0) ||
+            (currentEndPoint.host == host && currentEndPoint.port == port) {
             return currentGrpcChannel
         }else {
-            currentGrpcChannel?.close().always { _ in
+            _ = currentGrpcChannel?.close().always { _ in
 //                print($0)
             }
             currentEndPoint = (host, port)
@@ -38,22 +39,14 @@ class Network {
            
             return currentGrpcChannel
         }
-        
-//        guard let pool = try? GRPCChannelPool.with(target: .hostAndPort(host, port),
-//                                                   transportSecurity: .plaintext,
-//                                                   eventLoopGroup: eventLoopGroup) else {
-//            return .failure(.poolCreateFail)
-//        }
     }
     
     init() {
         eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-        
     }
     
     deinit {
         try? eventLoopGroup.syncShutdownGracefully()
-        
     }
     
 }

@@ -44,10 +44,7 @@ class RegisterViewModel : ObservableObject {
 
         let endPoint = register.serverIp.ipPort()
         
-        let options = CallOptions(timeLimit: .timeout(.milliseconds(500)))
-        let client = V1_UserAccountClient(channel: Network.shared.grpcChannel(host: endPoint.ip,
-                                                                              port: endPoint.port)!,
-                                          defaultCallOptions: options)
+        let client = UserAccount.CreateClient(host: endPoint.ip, port: endPoint.port)
         
         let send = V1_MakeUser.with {
             $0.user = V1_User.with {
@@ -59,12 +56,7 @@ class RegisterViewModel : ObservableObject {
             $0.token = register.registerToken
         }
         
-        let p = client.createUser(send)
-        p.response.whenSuccess { summary in
-            print("AASDASD")
-        }
-        
-        p.response.whenComplete { result in
+        UserAccount.CreateUser(client, message: send) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let token):
@@ -83,12 +75,6 @@ class RegisterViewModel : ObservableObject {
                 self.toastRegisterResult = true
             }
         }
-        
-        _ = p.status.always {
-            print($0)
-        }
-//        try? client.channel.close().wait()
-        
     }
     
     
