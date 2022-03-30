@@ -18,7 +18,6 @@ struct LoginView: View {
         return view
     }
     
-    
     func onAlertToast(_ callback: @escaping (AlertToast) -> Void) -> LoginView {
         let view = self
         view.viewModel.alertToast = callback
@@ -42,6 +41,9 @@ struct LoginView: View {
                 }
             }.padding()
         }
+//        .toast(isPresenting: $viewModel.toastLoginResult) {
+//            viewModel.getAlertToast()
+//        }
         .navigationViewStyle(.stack)
         
     }

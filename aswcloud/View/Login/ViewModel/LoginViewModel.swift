@@ -73,8 +73,8 @@ class LoginViewModel : ObservableObject {
     func getAlertToast() -> AlertToast {
         if let login = currentLoginResult {
             switch login {
-            case .success(let uuid, let token):
-                return AlertToast(displayMode: .hud, type: .regular, title: uuid, subTitle: token)
+            case .success(let uuid, _):
+                return AlertToast(displayMode: .hud, type: .regular, title: "로그인에 성공적으로 하였습니다.", subTitle: "\"\(uuid)\" 환영 합니다.")
                 
             case .fail(let reason):
                 return AlertToast(displayMode: .hud, type: .regular, title: "로그인 실패 하였습니다.", subTitle: reason.rawValue)
