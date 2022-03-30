@@ -15,16 +15,22 @@ struct RegisterView: View {
     @GestureState private var dragOffset = CGSize.zero
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    var register: (LoginResultModel) -> Void = { _ in }
     
+    func onRegister(_ callback: @escaping (LoginResultModel) -> Void) -> RegisterView {
+        var view = self
+        view.register = callback
+        return view
+    }
     
     var btnBack : some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
             }) {
                 HStack {
-                Image(systemName: "ic_back") // set image here
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
+                    Image(systemName: "backward.end.fill") // set image here
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.white)
                     Text("Go back")
                 }
             }
@@ -49,7 +55,9 @@ struct RegisterView: View {
                                  email: $viewModel.register.email)
                 
                 // TODO: send view model and server
-                Button("회원가입", action: viewModel.registerRequest)
+                Button("회원가입", action: {
+                    viewModel.registerRequest { register($0) }
+                })
             }
         }
         .toast(isPresenting: $viewModel.toastRegisterResult) {

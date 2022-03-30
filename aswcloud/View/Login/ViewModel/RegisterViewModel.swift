@@ -24,14 +24,12 @@ class RegisterViewModel : ObservableObject {
     @Published var toastRegisterResult = false
     public private(set) var currentRegisterResult: RegisterResult? = nil
     
-    
     enum RegisterResult {
         case success(String, String)
         case fail(String)
     }
     
-    
-    func registerRequest() {
+    func registerRequest(_ callback: @escaping (LoginResultModel) -> Void) {
         if register.password != register.confirmPassword {
             currentRegisterResult = .fail("확인 비밀번호가 같지 않습니다.")
             toastRegisterResult = true
@@ -63,6 +61,10 @@ class RegisterViewModel : ObservableObject {
                     if token.result {
                         self.currentRegisterResult = .success(self.register.userId,
                                                               self.register.password)
+                        
+                        callback(.init(serverIp: self.register.serverIp,
+                                       userId: self.register.userId,
+                                       userPassword: self.register.password))
                     }else {
                         self.currentRegisterResult = .fail(token.error)
                     }

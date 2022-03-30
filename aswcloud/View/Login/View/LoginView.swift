@@ -22,7 +22,9 @@ struct LoginView: View {
                 HStack {
                     Spacer()
                     VStack(alignment: .trailing) {
-                        NavigationLink(destination: RegisterView()) {
+                        NavigationLink(destination: RegisterView().onRegister  { data in
+                            
+                        }) {
                             Text("회원가입")
                         }
                         
