@@ -15,8 +15,7 @@ import SwiftJWT
 
 class LoginViewModel : ObservableObject {
     // MARK: - Published Object
-    @Published var autoLogin = false
-    @Published var toastLoginResult = false
+    @Published var autoLogin = false    
     
     public private(set) var currentLoginResult: LoginResult? = nil
     
@@ -31,9 +30,11 @@ class LoginViewModel : ObservableObject {
         case fail(LoginFail)
     }
     
+    var alertToast: (AlertToast) -> Void = { _ in }
+    
+    var loginSucces: (LoginResultModel, JWT<TokenMessage>) -> Void = { _, _ in }
     
     // MARK: - View to ViewModel Event
-    
     func login(data: LoginResultModel) {
         // Login PoC 검증 코드
         // TODO:
@@ -55,6 +56,7 @@ class LoginViewModel : ObservableObject {
                     if token.result {
                         let tokenMessage = try! JWT<TokenMessage>.init(jwtString: token.token)
                         self.currentLoginResult = .success(tokenMessage.claims.user_id, token.token)
+                        self.loginSucces(data, tokenMessage)
                     }else {
                         self.currentLoginResult = .fail(.notMatching)
                     }
@@ -63,7 +65,7 @@ class LoginViewModel : ObservableObject {
                     self.currentLoginResult = .fail(.networkFailure)
                     break
                 }
-                self.toastLoginResult = true
+                self.alertToast(self.getAlertToast())
             }
         }
     }

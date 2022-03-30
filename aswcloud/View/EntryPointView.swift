@@ -6,17 +6,49 @@
 //
 
 import SwiftUI
+import SwiftJWT
+import AlertToast
+
+class EntryPointViewModel : ObservableObject {
+    @Published var loginResult: LoginResultModel? = nil
+    @Published var loginToken: JWT<TokenMessage>? = nil
+    @Published var toastUi: Bool = false
+    
+    var currentToast: AlertToast = .init(displayMode: .hud, type: .loading)
+    
+    func setLogin(data: LoginResultModel, token: JWT<TokenMessage>) {
+        self.loginResult = data
+        self.loginToken = token
+    }
+}
 
 struct EntryPointView: View {
-    @State var isLogin = false
-    @State var isLoading = false
+    @ObservedObject var viewModel = EntryPointViewModel()
+    
+    var alertToast: (AlertToast) -> Void = { _ in }
+    func onAlertToast(_ callback: @escaping (AlertToast) -> Void) -> EntryPointView {
+        var view = self
+        view.alertToast = callback
+        return view
+    }
     
     var body: some View {
-        if isLogin {
-            HomeView()
-        }else {
-            LoginView()
-        }
+        Group {
+            if viewModel.loginResult != nil && viewModel.loginToken != nil {
+                HomeView()
+                    .animation(.easeIn, value: 1)
+            }else {
+                LoginView().onLogin { data, token in
+                    withAnimation {
+                        viewModel.setLogin(data: data, token: token)
+                    }
+                }.onAlertToast {
+                    viewModel.currentToast = $0
+                    viewModel.toastUi = true
+                }
+            }
+        }.toast(isPresenting: $viewModel.toastUi , alert: { return  viewModel.currentToast })
+        
     }
 }
 

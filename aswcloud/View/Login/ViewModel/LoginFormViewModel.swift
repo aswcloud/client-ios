@@ -11,9 +11,9 @@ import SwiftUI
 
 class LoginFormViewModel : ObservableObject {
     // MARK: - Published Object
-    @Published var serverIp = ""
-    @Published var userId = ""
-    @Published var userPassword = ""
+    @Published var serverIp = "113.198.230.10:30500"
+    @Published var userId = "Test"
+    @Published var userPassword = "test"
     
     // MARK: - View to ViewModel Event
     
