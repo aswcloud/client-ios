@@ -10,7 +10,6 @@ import AswProtobuf
 import GRPC
 
 class Token {
-    
     static func CreateClient(host: String = "", port: Int = 0) -> V1_TokenClient {
         let options = CallOptions(timeLimit: .timeout(Network.shared.timeout))
         return V1_TokenClient(channel: Network.shared.grpcChannel(host: host,

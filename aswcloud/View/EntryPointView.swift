@@ -35,18 +35,20 @@ struct EntryPointView: View {
     var body: some View {
         Group {
             if viewModel.loginResult != nil && viewModel.loginToken != nil {
-                HomeView()
+                HomeView(loginResult: $viewModel.loginResult, loginToken: $viewModel.loginToken)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .animation(.easeIn, value: 1)
             }else {
                 LoginView().onLogin { data, token in
-                    viewModel.setLogin(data: data, token: token)
+                    withAnimation {
+                        viewModel.setLogin(data: data, token: token)
+                    }
                 }.onAlertToast {
                     viewModel.currentToast = $0
                     viewModel.toastUi = true
                 }
             }
         }.toast(isPresenting: $viewModel.toastUi , alert: { viewModel.getToast() })
+            
         
     }
 }
