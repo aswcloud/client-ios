@@ -11,8 +11,9 @@ import SwiftJWT
 
 struct LoginView: View {
     @ObservedObject private var viewModel = LoginViewModel()
+    @State var showRegister = false
     
-    func onLogin(_ callback: @escaping (LoginResultModel, JWT<TokenMessage>) -> Void) -> LoginView {
+    func onLogin(_ callback: @escaping (LoginResultModel) -> Void) -> LoginView {
         let view = self
         view.viewModel.loginSucces = callback
         return view
@@ -33,7 +34,9 @@ struct LoginView: View {
                 HStack {
                     Spacer()
                     VStack(alignment: .trailing) {
-                        NavigationLink(destination: RegisterView().onRegister(viewModel.login)) {
+                        NavigationLink(destination: RegisterView().onRegister { _ in
+                            showRegister = false
+                        }.onAlertToast(viewModel.alertToast), isActive: $showRegister) {
                             Text("회원가입")
                         }
                         LoginAutoLoginView(autoLogin: $viewModel.autoLogin)

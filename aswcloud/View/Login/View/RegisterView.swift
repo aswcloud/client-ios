@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 
 
@@ -16,6 +17,12 @@ struct RegisterView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var register: (LoginResultModel) -> Void = { _ in }
+    
+    func onAlertToast(_ callback: @escaping (AlertToast) -> Void) -> RegisterView {
+        let view = self
+        view.viewModel.alertToast = callback
+        return view
+    }
     
     func onRegister(_ callback: @escaping (LoginResultModel) -> Void) -> RegisterView {
         var view = self
@@ -59,8 +66,7 @@ struct RegisterView: View {
                     viewModel.registerRequest { register($0) }
                 })
             }
-        }
-        .toast(isPresenting: $viewModel.toastRegisterResult) {
+        }.toast(isPresenting: $viewModel.toastRegisterResult) {
             viewModel.getAlertToast()
         }
         .navigationBarHidden(true)

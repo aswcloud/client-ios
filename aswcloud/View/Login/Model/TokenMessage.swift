@@ -17,4 +17,6 @@ struct TokenMessage: Claims {
     let exp: Int64
     let user_id: String
     let authorized: Bool
+    let name: String?
+    let type: String
 }

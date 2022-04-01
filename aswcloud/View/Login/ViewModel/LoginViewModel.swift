@@ -26,13 +26,13 @@ class LoginViewModel : ObservableObject {
     }
     
     enum LoginResult {
-        case success(String, String)
+        case success(String)
         case fail(LoginFail)
     }
     
     var alertToast: (AlertToast) -> Void = { _ in }
     
-    var loginSucces: (LoginResultModel, JWT<TokenMessage>) -> Void = { _, _ in }
+    var loginSucces: (LoginResultModel) -> Void = { _ in }
     
     // MARK: - View to ViewModel Event
     func login(data: LoginResultModel) {
@@ -40,40 +40,26 @@ class LoginViewModel : ObservableObject {
         // TODO:
         // 추후 LoginSession 에 통합 되어서 코드 간략화가 될 예정
         
-        let endPoint = data.serverIp.ipPort()
-        
-        let client = Token.CreateClient(host: endPoint.ip, port: endPoint.port)
-        
-        let send = V1_CreateRefreshTokenMessage.with {
-            $0.userID = data.userId
-            $0.userPassword = data.userPassword
-        }
-        
-        Token.CreateRefreshToken(client, message: send) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let token):
-                    if token.result {
-                        let tokenMessage = try! JWT<TokenMessage>.init(jwtString: token.token)
-                        self.currentLoginResult = .success(tokenMessage.claims.user_id, token.token)
-                        self.loginSucces(data, tokenMessage)
-                    }else {
-                        self.currentLoginResult = .fail(.notMatching)
-                    }
-                    break
-                case .failure(_):
-                    self.currentLoginResult = .fail(.networkFailure)
-                    break
-                }
-                self.alertToast(self.getAlertToast())
+        TokenManager.shared.login(host: data.serverIp, id: data.userId, pw: data.userPassword) { result in
+            switch result {
+            case .success(let token):
+                self.currentLoginResult = .success(token.claims.name!)
+                self.loginSucces(data)
+                break
+            case .failure(_):
+                self.currentLoginResult = .fail(.networkFailure)
+                break
             }
+            self.alertToast(self.getAlertToast())
         }
+        
+        
     }
     
     func getAlertToast() -> AlertToast {
         if let login = currentLoginResult {
             switch login {
-            case .success(let uuid, _):
+            case .success(let uuid):
                 return AlertToast(displayMode: .hud, type: .regular, title: "로그인에 성공적으로 하였습니다.", subTitle: "\"\(uuid)\" 환영 합니다.")
                 
             case .fail(let reason):

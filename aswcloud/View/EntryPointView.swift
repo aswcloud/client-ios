@@ -11,7 +11,6 @@ import AlertToast
 
 class EntryPointViewModel : ObservableObject {
     @Published var loginResult: LoginResultModel? = nil
-    @Published var loginToken: JWT<TokenMessage>? = nil
     @Published var toastUi: Bool = false
     
     var currentToast: AlertToast = .init(displayMode: .hud, type: .loading)
@@ -23,9 +22,8 @@ class EntryPointViewModel : ObservableObject {
     }
     
     
-    func setLogin(data: LoginResultModel, token: JWT<TokenMessage>) {
+    func setLogin(data: LoginResultModel) {
         self.loginResult = data
-        self.loginToken = token
     }
 }
 
@@ -34,20 +32,20 @@ struct EntryPointView: View {
     
     var body: some View {
         Group {
-            if viewModel.loginResult != nil && viewModel.loginToken != nil {
-                HomeView(loginResult: $viewModel.loginResult, loginToken: $viewModel.loginToken)
+            if viewModel.loginResult != nil {
+                HomeView(loginResult: $viewModel.loginResult)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }else {
-                LoginView().onLogin { data, token in
+                LoginView().onLogin { data in
                     withAnimation {
-                        viewModel.setLogin(data: data, token: token)
+                        viewModel.setLogin(data: data)
                     }
                 }.onAlertToast {
                     viewModel.currentToast = $0
                     viewModel.toastUi = true
                 }
             }
-        }.toast(isPresenting: $viewModel.toastUi , alert: { viewModel.getToast() })
+        }.toast(isPresenting: $viewModel.toastUi, alert: { viewModel.getToast() })
             
         
     }

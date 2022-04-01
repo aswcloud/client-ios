@@ -23,6 +23,7 @@ class RegisterViewModel : ObservableObject {
      
     @Published var toastRegisterResult = false
     public private(set) var currentRegisterResult: RegisterResult? = nil
+    var alertToast: (AlertToast) -> Void = { _ in }
     
     enum RegisterResult {
         case success(String, String)
@@ -84,7 +85,9 @@ class RegisterViewModel : ObservableObject {
         if let login = currentRegisterResult {
             switch login {
             case .success(_, _):
-                return AlertToast(displayMode: .hud, type: .regular, title: "회원가입에 성공했습니다!")
+                let p = AlertToast(displayMode: .hud, type: .regular, title: "회원가입에 성공했습니다!")
+                alertToast(p)
+                return p
                 
             case .fail(let reason):
                 if reason.contains("exists") {

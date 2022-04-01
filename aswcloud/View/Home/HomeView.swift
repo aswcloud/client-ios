@@ -10,7 +10,9 @@ import SwiftJWT
 
 struct HomeView: View {
     @Binding var loginResult: LoginResultModel!
-    @Binding var loginToken: JWT<TokenMessage>!
+//    @Binding var loginToken: String!
+    
+    
     
     var body: some View {
         TabView {
@@ -23,7 +25,7 @@ struct HomeView: View {
             Group {
                 Button(action: {
                     withAnimation {
-                        loginToken = nil
+//                        loginToken = nil
                     }
                 }) {
                     Text("AAA")
@@ -34,14 +36,5 @@ struct HomeView: View {
             
             
         }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    @State static var p: LoginResultModel? = .init(serverIp: "", userId: "", userPassword: "")
-    @State static var t: JWT<TokenMessage>? = .init(claims: TokenMessage(iat: 0, exp: 0, user_id: "", authorized: true))
-    
-    static var previews: some View {
-        HomeView(loginResult: $p, loginToken: $t)
     }
 }
