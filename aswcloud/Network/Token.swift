@@ -32,7 +32,7 @@ class Token {
     }
     
     static func UpdateRefreshToken(_ client: V1_TokenClient, message: V1_Uuid, auth: String, callback: @escaping (Result<V1_TokenMessage, Error>) -> Void) {
-        let p = client.updatehRefreshToken(message, callOptions: CallOptions(customMetadata: ["authorization": "bearer \(auth)"]))
+        let p = client.updatehRefreshToken(message, callOptions: CallOptions(customMetadata: ["authorization": auth]))
         
         p.response.whenComplete { result in
             callback(result)
@@ -44,7 +44,7 @@ class Token {
     }
     
     static func CreateAccessToken(_ client: V1_TokenClient, message: V1_Uuid, auth: String, callback: @escaping (Result<V1_TokenMessage, Error>) -> Void) {
-        let p = client.createAccessToken(message, callOptions: CallOptions(customMetadata: ["authorization": "bearer \(auth)"]))
+        let p = client.createAccessToken(message, callOptions: CallOptions(customMetadata: ["authorization": auth]))
         
         p.response.whenComplete { result in
             callback(result)

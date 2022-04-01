@@ -41,19 +41,19 @@ class LoginViewModel : ObservableObject {
         // 추후 LoginSession 에 통합 되어서 코드 간략화가 될 예정
         
         TokenManager.shared.login(host: data.serverIp, id: data.userId, pw: data.userPassword) { result in
-            switch result {
-            case .success(let token):
-                self.currentLoginResult = .success(token.claims.name!)
-                self.loginSucces(data)
-                break
-            case .failure(_):
-                self.currentLoginResult = .fail(.networkFailure)
-                break
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let token):
+                    self.currentLoginResult = .success(token.claims.name!)
+                    self.loginSucces(data)
+                    break
+                case .failure(_):
+                    self.currentLoginResult = .fail(.networkFailure)
+                    break
+                }
+                self.alertToast(self.getAlertToast())
             }
-            self.alertToast(self.getAlertToast())
         }
-        
-        
     }
     
     func getAlertToast() -> AlertToast {

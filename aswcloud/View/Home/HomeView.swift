@@ -25,7 +25,7 @@ struct HomeView: View {
             Group {
                 Button(action: {
                     withAnimation {
-//                        loginToken = nil
+                        loginResult = nil
                     }
                 }) {
                     Text("AAA")
