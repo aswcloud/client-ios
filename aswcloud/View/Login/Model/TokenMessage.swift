@@ -13,8 +13,11 @@ import SwiftJWT
 //atClaims["exp"] = time.Now().Add(time.Minute * 15).Unix()
 
 struct TokenMessage: Claims {
-    let iat: Int64
-    let exp: Int64
+//    let iat: Int64
+//    let exp: Int64
+    var iat: Date?
+    var exp: Date?
+    
     let user_id: String
     let authorized: Bool
     let name: String?

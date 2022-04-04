@@ -48,7 +48,7 @@ class TokenManager {
                         }) { result in
                             switch result {
                             case .success(let token):
-                                callback(.success(token))
+                                callback(.success(try! JWT<TokenMessage>(jwtString: token)))
                                 break
                             case .failure(let err):
                                 callback(.failure(err))
@@ -67,7 +67,7 @@ class TokenManager {
         
     }
     
-    func createAccessToken(message: V1_Uuid, _ callback: @escaping (Result<JWT<TokenMessage>, Error>) -> Void) {
+    func createAccessToken(message: V1_Uuid, _ callback: @escaping (Result<String, Error>) -> Void) {
         if latestHost.isEmpty {
             callback(.failure(TokenError.hostNotFound))
         }
@@ -78,7 +78,8 @@ class TokenManager {
             switch result {
             case .success(let token):
                 if token.result && token.hasToken {
-                    callback(.success(try! JWT<TokenMessage>(jwtString: token.token)))
+                    self.currentAccessToken = token.token
+                    callback(.success(token.token))
                 }else {
                     callback(.failure(TokenError.userAccountFail))
                 }
@@ -89,7 +90,6 @@ class TokenManager {
                 break
             }
         }
-       
     }
     
     func updateRefresh(host: String = "", uuid: V1_Uuid, token: String, _ callback: (JWT<TokenMessage>) -> Void) {
@@ -101,6 +101,29 @@ class TokenManager {
         switch jwt.validateClaims() {
         case .success:
             return callback(.success(jwt))
+        default:
+            createAccessToken(message: V1_Uuid.with {
+                $0.uuid = jwt.claims.user_id
+            }) { result in
+                switch result {
+                case .success(let token):
+                    callback(.success(try! JWT<TokenMessage>(jwtString: token)))
+                    break
+                default:
+                    callback(.failure(TokenError.tokenFail))
+                }
+            }
+            return
+        }
+    }
+    
+    func getAccessTokenRaw(_ callback: @escaping (Result<String, Error>) -> Void) {
+        let jwt = try! JWT<TokenMessage>(jwtString: currentAccessToken)
+        
+        switch jwt.validateClaims() {
+
+        case .success:
+            return callback(.success(currentAccessToken))
         default:
             createAccessToken(message: V1_Uuid.with {
                 $0.uuid = jwt.claims.user_id
