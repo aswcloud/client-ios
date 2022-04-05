@@ -12,6 +12,8 @@
 		6216F31C27F06C100001312B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6216F31B27F06C100001312B /* Token.swift */; };
 		623B154827FC6F0D00A5EC94 /* NamespaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B154727FC6F0D00A5EC94 /* NamespaceModel.swift */; };
 		623B154B27FC829F00A5EC94 /* LocalConsole in Frameworks */ = {isa = PBXBuildFile; productRef = 623B154A27FC829E00A5EC94 /* LocalConsole */; };
+		623B155927FCBB2E00A5EC94 /* ResizableSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 623B155827FCBB2E00A5EC94 /* ResizableSheet */; };
+		623B155B27FCC48500A5EC94 /* View+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B155A27FCC48500A5EC94 /* View+Keyboard.swift */; };
 		623C9A5A27F58F040051F2E1 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623C9A5927F58F030051F2E1 /* StorageView.swift */; };
 		623C9A5C27F58F0C0051F2E1 /* NamespaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623C9A5B27F58F0C0051F2E1 /* NamespaceView.swift */; };
 		623C9A5E27F58F130051F2E1 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623C9A5D27F58F130051F2E1 /* ServiceView.swift */; };
@@ -28,7 +30,6 @@
 		624D21C727B2AAF200994541 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 624D21C627B2AAF200994541 /* SplashScreen.storyboard */; };
 		624D21CA27B2D77700994541 /* LoginResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624D21C927B2D77700994541 /* LoginResultModel.swift */; };
 		625BA1DC27ED9A9D00E6BD31 /* AswProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 625BA1DB27ED9A9D00E6BD31 /* AswProtobuf */; };
-		625BA1DF27ED9AC700E6BD31 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 625BA1DE27ED9AC700E6BD31 /* PanModal */; };
 		625BA1E227ED9BB200E6BD31 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 625BA1E127ED9BB200E6BD31 /* AlertToast */; };
 		625BA1E527ED9EED00E6BD31 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 625BA1E427ED9EED00E6BD31 /* SwiftJWT */; };
 		625BA1E727EDA1CC00E6BD31 /* TokenMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625BA1E627EDA1CC00E6BD31 /* TokenMessage.swift */; };
@@ -54,6 +55,7 @@
 		6216F31B27F06C100001312B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		6216F31D27F072390001312B /* aswcloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = aswcloud.entitlements; sourceTree = "<group>"; };
 		623B154727FC6F0D00A5EC94 /* NamespaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceModel.swift; sourceTree = "<group>"; };
+		623B155A27FCC48500A5EC94 /* View+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Keyboard.swift"; sourceTree = "<group>"; };
 		623C9A5927F58F030051F2E1 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		623C9A5B27F58F0C0051F2E1 /* NamespaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceView.swift; sourceTree = "<group>"; };
 		623C9A5D27F58F130051F2E1 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
@@ -91,11 +93,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				625BA1DF27ED9AC700E6BD31 /* PanModal in Frameworks */,
 				625BA1E227ED9BB200E6BD31 /* AlertToast in Frameworks */,
 				625BA1E527ED9EED00E6BD31 /* SwiftJWT in Frameworks */,
 				625BA1DC27ED9A9D00E6BD31 /* AswProtobuf in Frameworks */,
 				623B154B27FC829F00A5EC94 /* LocalConsole in Frameworks */,
+				623B155927FCBB2E00A5EC94 /* ResizableSheet in Frameworks */,
 				625BA1ED27EDAF8800E6BD31 /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				6276ACDB27E9FAB700893584 /* String+Hash+IP.swift */,
+				623B155A27FCC48500A5EC94 /* View+Keyboard.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,11 +325,11 @@
 			name = aswcloud;
 			packageProductDependencies = (
 				625BA1DB27ED9A9D00E6BD31 /* AswProtobuf */,
-				625BA1DE27ED9AC700E6BD31 /* PanModal */,
 				625BA1E127ED9BB200E6BD31 /* AlertToast */,
 				625BA1E427ED9EED00E6BD31 /* SwiftJWT */,
 				625BA1EC27EDAF8800E6BD31 /* BetterSafariView */,
 				623B154A27FC829E00A5EC94 /* LocalConsole */,
+				623B155827FCBB2E00A5EC94 /* ResizableSheet */,
 			);
 			productName = aswcloud;
 			productReference = 62F8FD8B27B279C90039A327 /* Asw Cloud.app */;
@@ -358,11 +361,11 @@
 			mainGroup = 62F8FD8227B279C90039A327;
 			packageReferences = (
 				625BA1DA27ED9A9D00E6BD31 /* XCRemoteSwiftPackageReference "idl" */,
-				625BA1DD27ED9AC700E6BD31 /* XCRemoteSwiftPackageReference "PanModal" */,
 				625BA1E027ED9BB200E6BD31 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				625BA1E327ED9EED00E6BD31 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				625BA1EB27EDAF8800E6BD31 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				623B154927FC829E00A5EC94 /* XCRemoteSwiftPackageReference "LocalConsole" */,
+				623B155727FCBB2E00A5EC94 /* XCRemoteSwiftPackageReference "ResizableSheet" */,
 			);
 			productRefGroup = 62F8FD8C27B279C90039A327 /* Products */;
 			projectDirPath = "";
@@ -421,6 +424,7 @@
 				623C9A6827F58F820051F2E1 /* UserView.swift in Sources */,
 				6241A14627F1CB7B001FA950 /* RegisterUserView.swift in Sources */,
 				62F8FD8F27B279C90039A327 /* AswCloudApp.swift in Sources */,
+				623B155B27FCC48500A5EC94 /* View+Keyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,20 +645,20 @@
 				minimumVersion = 1.9.0;
 			};
 		};
+		623B155727FCBB2E00A5EC94 /* XCRemoteSwiftPackageReference "ResizableSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mtj0928/ResizableSheet";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		625BA1DA27ED9A9D00E6BD31 /* XCRemoteSwiftPackageReference "idl" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aswcloud/idl/";
 			requirement = {
 				branch = "release-v1-swift";
 				kind = branch;
-			};
-		};
-		625BA1DD27ED9AC700E6BD31 /* XCRemoteSwiftPackageReference "PanModal" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/slackhq/PanModal";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
 			};
 		};
 		625BA1E027ED9BB200E6BD31 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
@@ -689,15 +693,15 @@
 			package = 623B154927FC829E00A5EC94 /* XCRemoteSwiftPackageReference "LocalConsole" */;
 			productName = LocalConsole;
 		};
+		623B155827FCBB2E00A5EC94 /* ResizableSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 623B155727FCBB2E00A5EC94 /* XCRemoteSwiftPackageReference "ResizableSheet" */;
+			productName = ResizableSheet;
+		};
 		625BA1DB27ED9A9D00E6BD31 /* AswProtobuf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 625BA1DA27ED9A9D00E6BD31 /* XCRemoteSwiftPackageReference "idl" */;
 			productName = AswProtobuf;
-		};
-		625BA1DE27ED9AC700E6BD31 /* PanModal */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 625BA1DD27ED9AC700E6BD31 /* XCRemoteSwiftPackageReference "PanModal" */;
-			productName = PanModal;
 		};
 		625BA1E127ED9BB200E6BD31 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

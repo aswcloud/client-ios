@@ -91,12 +91,12 @@
       }
     },
     {
-      "identity" : "panmodal",
+      "identity" : "resizablesheet",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/slackhq/PanModal",
+      "location" : "https://github.com/mtj0928/ResizableSheet",
       "state" : {
-        "revision" : "b012aecb6b67a8e46369227f893c12544846613f",
-        "version" : "1.2.7"
+        "branch" : "main",
+        "revision" : "22d74b14579f0417efd40d2a1d98e9c6ea29aab1"
       }
     },
     {
