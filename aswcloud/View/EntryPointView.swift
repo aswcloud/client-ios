@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftJWT
 import AlertToast
+import ResizableSheet
 
 class EntryPointViewModel : ObservableObject {
     @Published var loginResult: LoginResultModel? = nil
@@ -29,12 +30,25 @@ class EntryPointViewModel : ObservableObject {
 
 struct EntryPointView: View {
     @ObservedObject var viewModel = EntryPointViewModel()
+    var scene: UIWindowScene? {
+        guard let scene = UIApplication.shared.connectedScenes.first,
+              let windowScene = scene as? UIWindowScene else {
+            return nil
+        }
+        return windowScene
+    }
+    
+    var resizableSheetCenter: ResizableSheetCenter? {
+        return scene.flatMap(ResizableSheetCenter.resolve(for:))
+    }
+    
     
     var body: some View {
         Group {
             if viewModel.loginResult != nil {
                 HomeView(loginResult: $viewModel.loginResult)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environment(\.resizableSheetCenter, resizableSheetCenter)
             }else {
                 LoginView().onLogin { data in
                     withAnimation {

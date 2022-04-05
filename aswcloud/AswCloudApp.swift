@@ -10,11 +10,15 @@ import LocalConsole
 
 @main
 struct AswCloudApp: App {
+
+    
     var body: some Scene {
         WindowGroup {
-            EntryPointView().onAppear {
-                LCManager.shared.isVisible = true
-            }
+            EntryPointView()
+              
+//                .onAppear {
+//                LCManager.shared.isVisible = true
+//            }
         }
     }
 }
