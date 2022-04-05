@@ -10,6 +10,8 @@
 		6216F31827F0585A0001312B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6216F31727F0585A0001312B /* Network.swift */; };
 		6216F31A27F058640001312B /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6216F31927F058640001312B /* UserAccount.swift */; };
 		6216F31C27F06C100001312B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6216F31B27F06C100001312B /* Token.swift */; };
+		623B154827FC6F0D00A5EC94 /* NamespaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B154727FC6F0D00A5EC94 /* NamespaceModel.swift */; };
+		623B154B27FC829F00A5EC94 /* LocalConsole in Frameworks */ = {isa = PBXBuildFile; productRef = 623B154A27FC829E00A5EC94 /* LocalConsole */; };
 		623C9A5A27F58F040051F2E1 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623C9A5927F58F030051F2E1 /* StorageView.swift */; };
 		623C9A5C27F58F0C0051F2E1 /* NamespaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623C9A5B27F58F0C0051F2E1 /* NamespaceView.swift */; };
 		623C9A5E27F58F130051F2E1 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623C9A5D27F58F130051F2E1 /* ServiceView.swift */; };
@@ -35,6 +37,7 @@
 		6276ACD927E9FA1100893584 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6276ACD827E9FA1100893584 /* RegisterModel.swift */; };
 		6276ACDC27E9FAB700893584 /* String+Hash+IP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6276ACDB27E9FAB700893584 /* String+Hash+IP.swift */; };
 		6293456627E9EFA900B2224C /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293456527E9EFA900B2224C /* RegisterViewModel.swift */; };
+		6293D97E27FABD060086D855 /* NamespaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293D97D27FABD060086D855 /* NamespaceViewModel.swift */; };
 		62DB61E227C244B600F73BA6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E127C244B600F73BA6 /* LoginViewModel.swift */; };
 		62DB61E827C2465600F73BA6 /* LoginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E727C2465600F73BA6 /* LoginFormView.swift */; };
 		62DB61EA27C247CB00F73BA6 /* LoginFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB61E927C247CB00F73BA6 /* LoginFormViewModel.swift */; };
@@ -50,6 +53,7 @@
 		6216F31927F058640001312B /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		6216F31B27F06C100001312B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		6216F31D27F072390001312B /* aswcloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = aswcloud.entitlements; sourceTree = "<group>"; };
+		623B154727FC6F0D00A5EC94 /* NamespaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceModel.swift; sourceTree = "<group>"; };
 		623C9A5927F58F030051F2E1 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		623C9A5B27F58F0C0051F2E1 /* NamespaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceView.swift; sourceTree = "<group>"; };
 		623C9A5D27F58F130051F2E1 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 		6276ACD827E9FA1100893584 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		6276ACDB27E9FAB700893584 /* String+Hash+IP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Hash+IP.swift"; sourceTree = "<group>"; };
 		6293456527E9EFA900B2224C /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		6293D97D27FABD060086D855 /* NamespaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceViewModel.swift; sourceTree = "<group>"; };
 		62DB61E127C244B600F73BA6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		62DB61E727C2465600F73BA6 /* LoginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormView.swift; sourceTree = "<group>"; };
 		62DB61E927C247CB00F73BA6 /* LoginFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewModel.swift; sourceTree = "<group>"; };
@@ -90,6 +95,7 @@
 				625BA1E227ED9BB200E6BD31 /* AlertToast in Frameworks */,
 				625BA1E527ED9EED00E6BD31 /* SwiftJWT in Frameworks */,
 				625BA1DC27ED9A9D00E6BD31 /* AswProtobuf in Frameworks */,
+				623B154B27FC829F00A5EC94 /* LocalConsole in Frameworks */,
 				625BA1ED27EDAF8800E6BD31 /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +113,14 @@
 				6216F31B27F06C100001312B /* Token.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		623B154627FC67A600A5EC94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				623B154727FC6F0D00A5EC94 /* NamespaceModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		623C9A5527F497C60051F2E1 /* Deployment */ = {
@@ -128,6 +142,8 @@
 		623C9A5727F497CE0051F2E1 /* Namespace */ = {
 			isa = PBXGroup;
 			children = (
+				623B154627FC67A600A5EC94 /* Model */,
+				6293D97C27FABCF60086D855 /* ViewModel */,
 				623C9A5B27F58F0C0051F2E1 /* NamespaceView.swift */,
 			);
 			path = Namespace;
@@ -228,6 +244,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		6293D97C27FABCF60086D855 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6293D97D27FABD060086D855 /* NamespaceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		62DB61E427C2462400F73BA6 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +326,7 @@
 				625BA1E127ED9BB200E6BD31 /* AlertToast */,
 				625BA1E427ED9EED00E6BD31 /* SwiftJWT */,
 				625BA1EC27EDAF8800E6BD31 /* BetterSafariView */,
+				623B154A27FC829E00A5EC94 /* LocalConsole */,
 			);
 			productName = aswcloud;
 			productReference = 62F8FD8B27B279C90039A327 /* Asw Cloud.app */;
@@ -337,6 +362,7 @@
 				625BA1E027ED9BB200E6BD31 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				625BA1E327ED9EED00E6BD31 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				625BA1EB27EDAF8800E6BD31 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
+				623B154927FC829E00A5EC94 /* XCRemoteSwiftPackageReference "LocalConsole" */,
 			);
 			productRefGroup = 62F8FD8C27B279C90039A327 /* Products */;
 			projectDirPath = "";
@@ -380,7 +406,9 @@
 				62DB61E827C2465600F73BA6 /* LoginFormView.swift in Sources */,
 				623C9A6027F58F1D0051F2E1 /* DeploymentView.swift in Sources */,
 				62DB61EA27C247CB00F73BA6 /* LoginFormViewModel.swift in Sources */,
+				623B154827FC6F0D00A5EC94 /* NamespaceModel.swift in Sources */,
 				626A627F27F9A85F00959C73 /* Namespace.swift in Sources */,
+				6293D97E27FABD060086D855 /* NamespaceViewModel.swift in Sources */,
 				623C9A5E27F58F130051F2E1 /* ServiceView.swift in Sources */,
 				6276ACD927E9FA1100893584 /* RegisterModel.swift in Sources */,
 				624D21C427B2A62400994541 /* HomeView.swift in Sources */,
@@ -605,6 +633,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		623B154927FC829E00A5EC94 /* XCRemoteSwiftPackageReference "LocalConsole" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/duraidabdul/LocalConsole";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
 		625BA1DA27ED9A9D00E6BD31 /* XCRemoteSwiftPackageReference "idl" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aswcloud/idl/";
@@ -648,6 +684,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		623B154A27FC829E00A5EC94 /* LocalConsole */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 623B154927FC829E00A5EC94 /* XCRemoteSwiftPackageReference "LocalConsole" */;
+			productName = LocalConsole;
+		};
 		625BA1DB27ED9A9D00E6BD31 /* AswProtobuf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 625BA1DA27ED9A9D00E6BD31 /* XCRemoteSwiftPackageReference "idl" */;

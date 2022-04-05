@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "localconsole",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/duraidabdul/LocalConsole",
+      "state" : {
+        "revision" : "d995119198d9c4379ac5b2e023452dbde9162ce0",
+        "version" : "1.9.5"
+      }
+    },
+    {
       "identity" : "loggerapi",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Kitura/LoggerAPI.git",

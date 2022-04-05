@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import LocalConsole
 
 @main
 struct AswCloudApp: App {
     var body: some Scene {
         WindowGroup {
-            EntryPointView()
+            EntryPointView().onAppear {
+                LCManager.shared.isVisible = true
+            }
         }
     }
 }

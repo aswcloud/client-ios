@@ -8,6 +8,7 @@
 import Foundation
 import AswProtobuf
 import GRPC
+import LocalConsole
 
 class Namespace {
     static func CreateClient(host: String = "", port: Int = 0, _ callback: @escaping (Result<V1_KubernetesClient, Error>) -> Void) {
