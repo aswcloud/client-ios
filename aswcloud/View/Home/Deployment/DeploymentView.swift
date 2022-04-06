@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct DeploymentView: View {
+    @ObservedObject var viewModel = DeploymentViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(viewModel.namespace) { namespace in
+                Section("Namespace : \(namespace.title)") {
+                    ForEach(namespace.deployment) { deploy in
+                        Text("\(deploy.title)")
+                    }
+                    
+                }
+            }
+        }
+        .navigationTitle("Namespace")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button("New") {
+//                createInput = .medium
+            }
+        }
     }
 }
 

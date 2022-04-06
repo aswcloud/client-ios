@@ -8,24 +8,13 @@
 import SwiftUI
 
 struct UserView: View {
+    @ObservedObject var viewModel = UserViewModel()
+    
     
     var body: some View {
         NavigationView {
             Form {
-                Section("정보") {
-                    Text("Namespace : 5개")
-                    HStack {
-                        Text("Deployment : 5개")
-                        Spacer()
-                        Text("Pods : 5개")
-                    }
-                    Text("Service : 5개")
-                    HStack {
-                        Text("Storage : 3개")
-                        Spacer()
-                        Text("33 GB / 33 GB")
-                    }
-                }
+                HomeInformationView(namespaceCount: $viewModel.namespaceCount)
                 
                 Section("Namespace") {
                     NavigationLink(destination: {
@@ -65,6 +54,7 @@ struct UserView: View {
             }
             .navigationTitle("리소스 관리")
         }
+        .onAppear(perform: viewModel.load)
     }
 }
 
