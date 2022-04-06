@@ -21,6 +21,7 @@ struct DeploymentView: View {
                 }
             }
         }
+        .onAppear(perform: viewModel.load)
         .navigationTitle("Namespace")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
