@@ -14,7 +14,8 @@ struct UserView: View {
     var body: some View {
         NavigationView {
             Form {
-                HomeInformationView(namespaceCount: $viewModel.namespaceCount)
+                HomeInformationView(namespaceCount: $viewModel.namespaceCount,
+                                    deploymentCount: $viewModel.deploymentCount)
                 
                 Section("Namespace") {
                     NavigationLink(destination: {

@@ -34,11 +34,7 @@ class DeploymentViewModel : ObservableObject {
                 Namespace.ReadNamespace(client, message: V1_Void.with { _ in }) { r in
                     switch r {
                     case .success(let list):
-                        var p = list.list
-                        p.append(V1_namespace.with {
-                            $0.name = ""
-                        })
-                        for item in p {
+                        for item in list.list {
                             Deployment.ReadDeployment(client, message: item) { r in
                                 switch r {
                                 case .success(let deployment):
@@ -52,7 +48,6 @@ class DeploymentViewModel : ObservableObject {
                                     break
                                 }
                             }
-
                         }
                         break
                     default:

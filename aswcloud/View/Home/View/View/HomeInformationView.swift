@@ -9,12 +9,14 @@ import SwiftUI
 
 struct HomeInformationView: View {
     @Binding var namespaceCount: Int
+    @Binding var deploymentCount: Int
+    
     
     var body: some View {
         Section("정보") {
             Text("Namespace : \(namespaceCount) 개")
             HStack {
-                Text("Deployment : 5개")
+                Text("Deployment : \(deploymentCount)개")
                 Spacer()
                 Text("Pods : 5개")
             }

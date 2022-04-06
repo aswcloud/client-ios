@@ -10,8 +10,8 @@ import SwiftUI
 import AswProtobuf
 
 class UserViewModel : ObservableObject {
-    @Published var namespaceCount = -1
-    
+    @Published var namespaceCount = 0
+    @Published var deploymentCount = 0
     func load() {
         Namespace.CreateClient { c in
             switch c {
@@ -22,11 +22,26 @@ class UserViewModel : ObservableObject {
                         DispatchQueue.main.async {
                             self.namespaceCount = list.list.count
                         }
+                        
+                        for item in list.list {
+                            Deployment.ReadDeployment(client, message: item) { r in
+                                switch r {
+                                case .success(let deployment):
+                                    DispatchQueue.main.async {
+                                        self.deploymentCount += deployment.list.count
+                                    }
+                                    break
+                                case .failure(_):
+                                    break
+                                }
+                            }
+                        }
                         break
                     case .failure(_):
                         break
                     }
                 }
+                
             default:
                 break
             }
